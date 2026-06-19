@@ -2,6 +2,7 @@
 
 import clientNoteService from '@/lib/api/clientApi';
 import useAuthStore from '@/lib/store/authStore';
+import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
 interface AuthProviderProps {
@@ -13,6 +14,8 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const clearIsAuthenticated = useAuthStore(
     state => state.clearIsAuthenticated,
   );
+
+  const path = usePathname();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -27,14 +30,13 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         const user = await clientNoteService.getMe();
 
         setUser(user);
-      } catch (error) {
-        console.error('Failed to fetch user', error);
+      } catch {
         clearIsAuthenticated();
       }
     };
 
     fetchUser();
-  }, [setUser, clearIsAuthenticated]);
+  }, [path, setUser, clearIsAuthenticated]);
 
   return <>{children}</>;
 };

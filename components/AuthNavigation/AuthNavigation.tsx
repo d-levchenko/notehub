@@ -7,7 +7,11 @@ import useAuthStore from '@/lib/store/authStore';
 import AuthLogoutItem from '../AuthLogoutItem/AuthLogoutItem';
 import AuthLoginItem from '../AuthLoginItem/AuthLoginItem';
 
-const AuthNavigation = () => {
+interface AuthNavigationProps {
+  onClick: () => void;
+}
+
+const AuthNavigation = ({ onClick }: AuthNavigationProps) => {
   const { isAuthenticated } = useAuthStore();
   const router = useRouter();
 
@@ -16,18 +20,20 @@ const AuthNavigation = () => {
   );
 
   const handleLogout = async () => {
-    await clientNoteService.logout();
-    clearIsAuthenticated();
-
-    router.push('/sign-in');
+    try {
+      await clientNoteService.logout();
+    } finally {
+      clearIsAuthenticated();
+      router.push('/sign-in');
+    }
   };
 
   return (
     <>
       {isAuthenticated ? (
-        <AuthLogoutItem handleLogout={handleLogout} />
+        <AuthLogoutItem handleLogout={handleLogout} onClick={onClick} />
       ) : (
-        <AuthLoginItem />
+        <AuthLoginItem onClick={onClick} />
       )}
     </>
   );

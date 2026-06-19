@@ -7,25 +7,37 @@ import css from '../AuthNavigation/AuthNavigation.module.css';
 
 interface AuthLogoutItemProps {
   handleLogout: () => void;
+  onClick: () => void;
 }
 
-const AuthLogoutItem = ({ handleLogout }: AuthLogoutItemProps) => {
+const AuthLogoutItem = ({ handleLogout, onClick }: AuthLogoutItemProps) => {
   const user = useAuthStore(state => state.user);
+
+  const logoutHandlers = () => {
+    handleLogout();
+    onClick();
+  };
 
   return (
     <>
       <li>
-        <Link href="/notes/filter/all">Notes</Link>
+        <Link onClick={onClick} href="/notes/filter/all">
+          Notes
+        </Link>
       </li>
       <li className={css.navigationItem}>
-        <Link href="/profile" prefetch={false} className={css.navigationLink}>
+        <Link
+          onClick={onClick}
+          href="/profile"
+          prefetch={false}
+          className={css.navigationLink}>
           Profile
         </Link>
       </li>
 
       <li className={css.navigationItem}>
         <p className={css.userEmail}> {user?.email} </p>
-        <button onClick={handleLogout} className={css.logoutButton}>
+        <button onClick={logoutHandlers} className={css.logoutButton}>
           Logout
         </button>
       </li>

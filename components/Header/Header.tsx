@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import css from './Header.module.css';
-import AuthNavigation from '../AuthNavigation/AuthNavigation';
+import MobileMenu from './MobileMenu/MobileMenu';
 
 const Header = () => {
   return (
@@ -9,14 +9,8 @@ const Header = () => {
       <Link href="/" aria-label="Home">
         NoteHub
       </Link>
-      <nav aria-label="Main Navigation">
-        <ul className={css.navigation}>
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <AuthNavigation />
-        </ul>
-      </nav>
+
+      <MobileMenu />
     </header>
   );
 };
