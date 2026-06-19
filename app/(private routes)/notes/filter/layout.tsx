@@ -1,4 +1,4 @@
-import css from './LayoutNotes.module.css';
+import SidebarLayout from '@/components/SidebarMobile/SidebarLayout/SidebarLayout';
 
 import { ReactNode } from 'react';
 
@@ -8,12 +8,7 @@ interface FilterOptionsProps {
 }
 
 const FilterOptions = ({ children, sidebar }: FilterOptionsProps) => {
-  return (
-    <div className={css.container}>
-      <aside className={css.sidebar}>{sidebar}</aside>
-      <div className={css.notesWrapper}>{children}</div>
-    </div>
-  );
+  return <SidebarLayout sidebar={sidebar}>{children}</SidebarLayout>;
 };
 
 export default FilterOptions;

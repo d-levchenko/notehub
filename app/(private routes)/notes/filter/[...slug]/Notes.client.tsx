@@ -9,6 +9,7 @@ import Link from 'next/link';
 import NoteList from '@/components/NoteList/NoteList';
 import SearchBox from '@/components/SearchBox/SearchBox';
 import Pagination from '@/components/Pagination/Pagination';
+import NoteListEmpty from '@/components/NoteListEmpty/NoteListEmpty';
 
 import type { TAGS } from '@/types/note';
 
@@ -38,7 +39,7 @@ const NotesClient = ({ tag }: NotesClientProps) => {
 
   return (
     <div className={css.app}>
-      <header className={css.toolbar}>
+      <div className={css.toolbar}>
         <SearchBox onChange={debouncedSearch} />
         {data?.notes && data.notes.length > 0 && (
           <>
@@ -54,10 +55,14 @@ const NotesClient = ({ tag }: NotesClientProps) => {
         <Link className={css.button} href="/notes/action/create">
           Create note +
         </Link>
-      </header>
+      </div>
       {isLoading && <div>Loading...</div>}
       {isError && <div>There is an error to load notes.</div>}
-      {data && data.notes.length > 0 && <NoteList notes={data.notes} />}
+      {data && data.notes.length > 0 ? (
+        <NoteList notes={data.notes} />
+      ) : (
+        <NoteListEmpty />
+      )}
     </div>
   );
 };

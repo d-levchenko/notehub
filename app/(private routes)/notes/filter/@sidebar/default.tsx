@@ -1,25 +1,7 @@
-import Link from 'next/link';
-import css from './SidebarNotes.module.css';
-
-const TAGS = ['Work', 'Personal', 'Todo', 'Shopping', 'Meeting'];
+import SidebarMobile from '@/components/SidebarMobile/SidebarMobile';
 
 const SidebarNotes = () => {
-  return (
-    <ul className={css.menuList}>
-      <li className={css.menuItem}>
-        <Link href={`/notes/filter/all`} className={css.menuLink}>
-          All notes
-        </Link>
-      </li>
-      {TAGS.map(tag => (
-        <li key={tag} className={css.menuItem}>
-          <Link href={`/notes/filter/${tag}`} className={css.menuLink}>
-            {tag}
-          </Link>
-        </li>
-      ))}
-    </ul>
-  );
+  return <SidebarMobile />;
 };
 
 export default SidebarNotes;
