@@ -26,7 +26,7 @@ export const generateMetadata = async ({
     openGraph: {
       title: `Note ${title}`,
       description: `Note ${content} details`,
-      url: `https://09-auth-gamma-one.vercel.app/notes/${id}`,
+      url: `https://notehub-smoky.vercel.app/notes/${id}`,
       siteName: 'NoteHub',
 
       images: [

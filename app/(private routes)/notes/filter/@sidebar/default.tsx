@@ -1,4 +1,4 @@
-import SidebarMobile from '@/components/SidebarMobile/SidebarMobile';
+import SidebarMobile from '@/components/SidebarLayout/SidebarMobile/SidebarMobile';
 
 const SidebarNotes = () => {
   return <SidebarMobile />;

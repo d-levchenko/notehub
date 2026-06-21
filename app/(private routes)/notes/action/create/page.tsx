@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Create note',
     description: 'Create note',
-    url: 'https://09-auth-gamma-one.vercel.app/notes/action/create',
+    url: 'https://notehub-smoky.vercel.app/notes/action/create',
     siteName: 'NoteHub',
 
     images: [

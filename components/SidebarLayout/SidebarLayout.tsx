@@ -1,8 +1,9 @@
 'use client';
 
-import useSidebarStore from '@/lib/store/sidebarStore';
-import css from './LayoutNotes.module.css';
 import { useState } from 'react';
+import { GoSidebarCollapse, GoSidebarExpand } from 'react-icons/go';
+
+import css from './LayoutNotes.module.css';
 
 interface SidebarLayoutProps {
   children: React.ReactNode;
@@ -11,19 +12,21 @@ interface SidebarLayoutProps {
 
 const SidebarLayout = ({ children, sidebar }: SidebarLayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const sidebarOpen = useSidebarStore(state => state.sidebarOpen);
-  const toggleSidebar = useSidebarStore(state => state.toggleSidebar);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
-    toggleSidebar();
+    setSidebarOpen(!sidebarOpen);
   };
 
   return (
     <>
       <button onClick={handleClick} className={css.menuBtn}>
-        {isOpen ? 'Show sidebar' : 'Hide sidebar'}
+        {isOpen ? (
+          <GoSidebarCollapse size={20} />
+        ) : (
+          <GoSidebarExpand size={20} />
+        )}
       </button>
       <div className={css.container}>
         <aside className={`${css.sidebar} ${!sidebarOpen && css.hideSidebar}`}>

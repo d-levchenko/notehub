@@ -1,4 +1,4 @@
-import SidebarLayout from '@/components/SidebarMobile/SidebarLayout/SidebarLayout';
+import SidebarLayout from '@/components/SidebarLayout/SidebarLayout';
 
 import { ReactNode } from 'react';
 
