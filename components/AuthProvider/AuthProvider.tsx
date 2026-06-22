@@ -2,7 +2,6 @@
 
 import clientNoteService from '@/lib/api/clientApi';
 import useAuthStore from '@/lib/store/authStore';
-import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
 interface AuthProviderProps {
@@ -14,8 +13,6 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const clearIsAuthenticated = useAuthStore(
     state => state.clearIsAuthenticated,
   );
-
-  const path = usePathname();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -36,7 +33,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     };
 
     fetchUser();
-  }, [path, setUser, clearIsAuthenticated]);
+  }, [setUser, clearIsAuthenticated]);
 
   return <>{children}</>;
 };

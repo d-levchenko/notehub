@@ -1,5 +1,6 @@
 'use client';
 
+import useAuthStore from '@/lib/store/authStore';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -9,6 +10,14 @@ interface PublicLayoutProps {
 
 const PublicLayout = ({ children }: PublicLayoutProps) => {
   const router = useRouter();
+
+  const clearIsAuthenticated = useAuthStore(
+    state => state.clearIsAuthenticated,
+  );
+
+  useEffect(() => {
+    clearIsAuthenticated();
+  }, [clearIsAuthenticated]);
 
   useEffect(() => {
     router.refresh();
